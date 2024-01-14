@@ -148,7 +148,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte au
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
+LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -156,6 +156,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte au
 
     this->m0Pin = m0Pin;
     this->m1Pin = m1Pin;
+    this->m2Pin = m2Pin;
 
 	#ifdef ACTIVATE_SOFTWARE_SERIAL
 		this->ss = NULL;
@@ -385,6 +386,10 @@ int LoRa_E70::available() {
 //	}
 }
 
+int LoRa_E70::read() {
+	return this->serialDef.stream->read();
+}
+
 /*
 
 Method to indicate availability
@@ -506,6 +511,8 @@ Status LoRa_E70::receiveStruct(void *structureManaged, uint16_t size_) {
 
 	return result;
 }
+
+
 
 /*
 
@@ -836,6 +843,10 @@ ResponseContainer LoRa_E70::receiveMessageComplete(){
 	return rc;
 }
 
+//Stream LoRa_E70::getStream(){
+//	return this->serialDef.stream;
+//}
+
 ResponseContainer LoRa_E70::receiveMessageUntil(char delimiter){
 	ResponseContainer rc;
 	rc.status.code = E70_SUCCESS;
@@ -889,6 +900,45 @@ ResponseStructContainer LoRa_E70::receiveMessageComplete(const uint8_t size){
 
 	return rc;
 }
+
+ResponseStructContainer LoRa_E70::receiveStreamMessage(const uint8_t size){
+	return LoRa_E70::receiveStreamMessageComplete(size);
+}
+
+ResponseStructContainer LoRa_E70::receiveStreamMessageComplete(const uint8_t size){
+	ResponseStructContainer rc;
+
+	rc.data = malloc(size);
+	rc.status.code = this->receiveStreamStruct((uint8_t *)rc.data, size);
+	if (rc.status.code!=E70_SUCCESS) {
+		return rc;
+	}
+
+	return rc;
+}
+
+Status LoRa_E70::receiveStreamStruct(void *structureManaged, uint16_t size_) {
+	Status result = E70_SUCCESS;
+
+	uint8_t len = this->serialDef.stream->readBytes((uint8_t *) structureManaged, size_);
+
+	DEBUG_PRINT("Available buffer: ");
+	DEBUG_PRINT(len);
+	DEBUG_PRINT(" structure size: ");
+	DEBUG_PRINTLN(size_);
+
+	if (len!=size_){
+		if (len==0){
+			result = ERR_E70_NO_RESPONSE_FROM_DEVICE;
+		}else{
+			result = ERR_E70_DATA_SIZE_NOT_MATCH;
+		}
+	}
+	if (result != E70_SUCCESS) return result;
+
+	return result;
+}
+
 
 ResponseStatus LoRa_E70::sendMessage(const void *message, const uint8_t size){
 	ResponseStatus status;
@@ -1005,6 +1055,179 @@ ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, const
 	free(fixedStransmission);
 
 	if (status.code!=E70_SUCCESS) return status;
+
+	return status;
+}
+
+//ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, Stream *streamLocal){
+////	#pragma pack(push, 1)
+////	struct FixedStransmission {
+////		byte ADDH = 0;
+////		byte ADDL = 0;
+////		byte CHAN = 0;
+////		unsigned char message[];
+////	} fixedStransmission;
+////	#pragma pack(pop)
+//
+//
+//	DEBUG_PRINT(ADDH);
+//
+//
+//	FixedStransmission *fixedStransmission = init_stack(3);
+//
+////	STACK *resize_stack(STACK *st, int m){
+////	    if (m<=st->max){
+////	         return st; /* Take sure do not kill old values */
+////	    }
+////	    STACK *st = (STACK *)realloc(sizeof(STACK)+m*sizeof(int));
+////	    st->max = m;
+////	    return st;
+////	}
+//	ResponseStatus status;
+//
+//	fixedStransmission->ADDH = ADDH;
+//	fixedStransmission->ADDL = ADDL;
+//	fixedStransmission->CHAN = CHAN;
+////	fixedStransmission.message = &message;
+//
+////	memcpy(fixedStransmission->message,(unsigned char*)message,size);
+//
+//
+//
+//	Status result = E70_SUCCESS;
+//
+//	status.code = result;
+//
+////	uint8_t len =
+//			this->serialDef.stream->write((uint8_t *) fixedStransmission, 3);
+//
+//    DEBUG_PRINT(F("File available..."));
+//    DEBUG_PRINTLN(streamLocal->available());
+//
+//
+//
+//	while (streamLocal->available()>0) {
+////			uint8_t len =
+//					this->serialDef.stream->write(streamLocal->read());
+//	}
+////	if (len!=size_){
+////		DEBUG_PRINT(F("Send... len:"))
+////		DEBUG_PRINT(len);
+////		DEBUG_PRINT(F(" size:"))
+////		DEBUG_PRINT(size_);
+////		if (len==0){
+////			result = ERR_E70_NO_RESPONSE_FROM_DEVICE;
+////		}else{
+////			result = ERR_E70_DATA_SIZE_NOT_MATCH;
+////		}
+////	}
+////	if (result != E70_SUCCESS) return result;
+//
+//	result = this->waitCompleteResponse(5000, 5000);
+//
+//	if (result != E70_SUCCESS)
+//	{
+//		status.code = result;
+//		return status;
+//	}
+//    DEBUG_PRINT(F("Clear buffer..."))
+//    this->cleanUARTBuffer();
+//
+//	DEBUG_PRINTLN(F("ok!"))
+//
+////	status.code = this->sendStruct((uint8_t *)fixedStransmission, size+3);
+////
+//	free(fixedStransmission);
+//
+////	if (status.code!=E70_SUCCESS) {
+////		status.code = status;
+////	}
+//
+//	return status;
+//}
+ResponseStatus LoRa_E70::streamStructMessage(const void *message, const uint8_t size, Stream *streamLocal){
+	ResponseStatus status;
+	Status result = E70_SUCCESS;
+
+	status.code = result;
+
+    if (streamLocal->available()==0) {
+		status.code = ERR_E70_NO_STREAM_FOUND;
+		return status;
+    }
+
+	uint8_t len = this->serialDef.stream->write((uint8_t *) message, size);
+	if (len!=size){
+		DEBUG_PRINT(F("Send... len:"))
+		DEBUG_PRINT(len);
+		DEBUG_PRINT(F(" size:"))
+		DEBUG_PRINT(size);
+		if (len==0){
+			result = ERR_E70_NO_RESPONSE_FROM_DEVICE;
+		}else{
+			result = ERR_E70_DATA_SIZE_NOT_MATCH;
+		}
+	}
+	if (result != E70_SUCCESS) {
+		status.code = result;
+		return status;
+	}
+
+
+	DEBUG_PRINT(F("File available... "));
+    DEBUG_PRINTLN(streamLocal->available());
+
+    if (streamLocal->available()>0) {
+		while (streamLocal->available()>0) {
+	//			uint8_t len =
+						this->serialDef.stream->write(streamLocal->read());
+		}
+//    } else {
+//		status.code = ERR_E70_NO_STREAM_FOUND;
+//		return status;
+	}
+
+	result = this->waitCompleteResponse(5000, 5000);
+
+	if (result != E70_SUCCESS)
+	{
+		status.code = result;
+		return status;
+	}
+    DEBUG_PRINT(F("Clear buffer..."))
+    this->cleanUARTBuffer();
+
+	DEBUG_PRINTLN(F("ok!"))
+
+	return status;
+}
+
+
+ResponseStatus LoRa_E70::streamMessage(Stream *streamLocal){
+	ResponseStatus status;
+	Status result = E70_SUCCESS;
+
+	status.code = result;
+
+	DEBUG_PRINT(F("File available..."));
+    DEBUG_PRINTLN(streamLocal->available());
+
+	while (streamLocal->available()>0) {
+//			uint8_t len =
+					this->serialDef.stream->write(streamLocal->read());
+	}
+
+	result = this->waitCompleteResponse(5000, 5000);
+
+	if (result != E70_SUCCESS)
+	{
+		status.code = result;
+		return status;
+	}
+    DEBUG_PRINT(F("Clear buffer..."))
+    this->cleanUARTBuffer();
+
+	DEBUG_PRINTLN(F("ok!"))
 
 	return status;
 }

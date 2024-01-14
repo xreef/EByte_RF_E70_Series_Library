@@ -1,5 +1,5 @@
 ###########################################
-# Syntax Coloring Map For LoRa_E32_Series-library
+# Syntax Coloring Map For EByte_LoRa_E70_Series-library
 ###########################################
 
 ###########################################
@@ -23,8 +23,13 @@ resetModule	KEYWORD2
 
 sendMessage	KEYWORD2
 receiveMessage	KEYWORD2
+receiveStreamMessage	KEYWORD2
+read	KEYWORD2
 
 sendFixedMessage	KEYWORD2
 sendBroadcastFixedMessage	KEYWORD2
+
+streamStructMessage	KEYWORD2
+streamMessage	KEYWORD2
 
 receiveInitialMessage	KEYWORD2

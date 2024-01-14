@@ -13,9 +13,6 @@
  *  - BROADCAST MESSAGE 2
  *  - BROADCAST MESSAGE 3
  *
- * Pai attention e70 support RSSI, if you want use that functionality you must enable RSSI on configuration
- * configuration.TRANSMISSION_MODE.enableRSSI = RSSI_ENABLED;
- *
  * and uncomment #define ENABLE_RSSI true in this sketch
  *
  * by Renzo Mischianti <https://www.mischianti.org>
@@ -23,63 +20,75 @@
  * https://www.mischianti.org
  *
  * E70		  ----- WeMos D1 mini	----- esp32			----- Arduino Nano 33 IoT	----- Arduino MKR	----- Raspberry Pi Pico   ----- stm32               ----- ArduinoUNO
- * M0         ----- D7 (or GND) 	----- 19 (or GND) 	----- 4 (or GND) 			----- 2 (or GND) 	----- 10 (or GND)	      ----- PB0 (or GND)        ----- 7 Volt div (or GND)
- * M1         ----- D6 (or GND) 	----- 21 (or GND) 	----- 6 (or GND) 			----- 4 (or GND) 	----- 11 (or GND)	      ----- PB10 (or GND)       ----- 6 Volt div (or GND)
+ * M0         ----- D6 				----- 23 			----- 4 					----- 2 			----- 9 			      ----- PB0 		       	----- 8 Volt div
+ * M1         ----- D7 				----- 19 			----- 5 					----- 3 			----- 10 			      ----- PB1 		       	----- 7 Volt div
+ * M1         ----- D8 				----- 22 			----- 6 					----- 4 			----- 11 			      ----- PB10 		      	----- 6 Volt div
  * TX         ----- D3 (PullUP)		----- TX2 (PullUP)	----- TX1 (PullUP)			----- 14 (PullUP)	----- 8 (PullUP)	      ----- PA2 TX2 (PullUP)    ----- 4 (PullUP)
  * RX         ----- D4 (PullUP)		----- RX2 (PullUP)	----- RX1 (PullUP)			----- 13 (PullUP)	----- 9 (PullUP)	      ----- PA3 RX2 (PullUP)    ----- 5 Volt div (PullUP)
  * AUX        ----- D5 (PullUP)		----- 18  (PullUP)	----- 2  (PullUP)			----- 0  (PullUP)	----- 2  (PullUP)	      ----- PA0  (PullUP)       ----- 3 (PullUP)
  * VCC        ----- 3.3v/5v			----- 3.3v/5v		----- 3.3v/5v				----- 3.3v/5v		----- 3.3v/5v		      ----- 3.3v/5v             ----- 3.3v/5v
  * GND        ----- GND				----- GND			----- GND					----- GND			----- GND			      ----- GND                 ----- GND
  *
+ *	Sub-packet can be emulated by set
+ *	M0 = LOW
+ *	M1 = HIGH
+ *	M2 = LOW
+ *	Continuous
+ *	M0 = HIGH
+ *	M1 = LOW
+ *	M2 = LOW
+ *
  */
-
-// If you want use RSSI uncomment //#define ENABLE_RSSI true
-// and use relative configuration with RSSI enabled
-//#define ENABLE_RSSI true
 
 #include "Arduino.h"
 #include "LoRa_E70.h"
 
 // ---------- esp8266 pins --------------
-//LoRa_E70 e70ttl(RX, TX, AUX, M0, M1);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-LoRa_E70 e70ttl(D3, D4, D5, D7, D6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//LoRa_E70 e70ttl(RX, TX, AUX, M0, M1, M2);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
+//LoRa_E70 e70ttl(D3, D4, D5, D7, D6, D7); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
 //LoRa_E70 e70ttl(D2, D3); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(D2, D3); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, D5, D7, D6); // AUX M0 M1
+//LoRa_E70 e70ttl(&mySerial, D5, D6, D7, D8); // AUX M0 M1
 // -------------------------------------
 
 // ---------- Arduino pins --------------
-//LoRa_E70 e70ttl(4, 5, 3, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//LoRa_E70 e70ttl(4, 5, 3, 8, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
 //LoRa_E70 e70ttl(4, 5); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(4, 5); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, 3, 7, 6); // AUX M0 M1
+//LoRa_E70 e70ttl(&mySerial, 3, 8, 7, 6); // AUX M0 M1
 // -------------------------------------
 
 // ------------- Arduino Nano 33 IoT -------------
-// LoRa_E70 e70ttl(&Serial1, 2, 4, 6); //  RX AUX M0 M1
+// LoRa_E70 e70ttl(&Serial1, 2, 4, 5, 6); //  RX AUX M0 M1
 // -------------------------------------------------
 
 // ------------- Arduino MKR WiFi 1010 -------------
-// LoRa_E70 e70ttl(&Serial1, 0, 2, 4); //  RX AUX M0 M1
+// LoRa_E70 e70ttl(&Serial1, 0, 2, 3, 4); //  RX AUX M0 M1
 // -------------------------------------------------
 
+// ---------- esp32c3 pins --------------
+// LoRa_E70 e70ttl(&Serial1,  1, 2, 3, 4,); //  RX AUX M0 M1
+
+LoRa_E70 e70ttl(4, 5, &Serial1, 6, 1, 2, 3, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
+// -------------------------------------
+
 // ---------- esp32 pins --------------
-// LoRa_E70 e70ttl(&Serial2, 15, 21, 19); //  RX AUX M0 M1
+// LoRa_E70 e70ttl(&Serial2, 15, 23, 19, 22); //  RX AUX M0 M1
 
 //LoRa_E70 e70ttl(&Serial2, 22, 4, 18, 21, 19, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
 // -------------------------------------
 
 // ---------- Raspberry PI Pico pins --------------
-// LoRa_E70 e70ttl(&Serial2, 2, 10, 11); //  RX AUX M0 M1
+// LoRa_E70 e70ttl(&Serial2, 2, 10, 11, 12); //  RX AUX M0 M1
 // -------------------------------------
 
 // ---------------- STM32 --------------------
-//HardwareSerial Serial2(USART2);   // PA3  (RX)  PA2  (TX)
-//LoRa_E70 e70ttl(&Serial2, PA0, PB0, PB10); //  RX AUX M0 M1
+// HardwareSerial Serial2(USART2);   // PA3  (RX)  PA2  (TX)
+// LoRa_E70 e70ttl(&Serial2, PA0, PB0, PB1, PB10); //  RX AUX M0 M1
 // -------------------------------------------------
 
 void setup() {

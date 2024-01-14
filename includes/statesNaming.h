@@ -4,8 +4,6 @@
 	#define OPERATING_FREQUENCY 410
 #elif defined(FREQUENCY_400)
 	#define OPERATING_FREQUENCY 410
-#elif defined(FREQUENCY_230)
-	#define OPERATING_FREQUENCY 220
 #elif defined(FREQUENCY_868)
 	#define OPERATING_FREQUENCY 850
 #elif defined(FREQUENCY_900)
@@ -36,7 +34,8 @@ typedef enum RESPONSE_STATUS {
   ERR_E70_NO_RESPONSE_FROM_DEVICE,
   ERR_E70_WRONG_UART_CONFIG,
   ERR_E70_WRONG_FORMAT,
-  ERR_E70_PACKET_TOO_BIG
+  ERR_E70_PACKET_TOO_BIG,
+  ERR_E70_NO_STREAM_FOUND
 } Status;
 
 static String getResponseDescriptionByParams(byte status){
@@ -83,6 +82,9 @@ static String getResponseDescriptionByParams(byte status){
 		break;
 	  case ERR_E70_PACKET_TOO_BIG:
 		return F("The device support only 200byte of data transmission!");
+		break;
+	  case ERR_E70_NO_STREAM_FOUND:
+		return F("No stream found!");
 		break;
 	  default:
 		return F("Invalid status!");
@@ -438,10 +440,10 @@ static String getFixedTransmissionDescriptionByParams(byte fixedTransmission)
 #else
 	enum TRANSMISSION_POWER
 	{
-	  POWER_30 = 0b00,
-	  POWER_27 = 0b01,
-	  POWER_24 = 0b10,
-	  POWER_21 = 0b11
+	  POWER_22 = 0b00,
+	  POWER_17 = 0b01,
+	  POWER_13 = 0b10,
+	  POWER_10 = 0b11
 
 	};
 
@@ -449,17 +451,17 @@ static String getFixedTransmissionDescriptionByParams(byte fixedTransmission)
 	{
 		switch (transmissionPower)
 		{
-		  case POWER_30:
-			return F("30dBm (Default)");
+		  case POWER_22:
+			return F("22dBm (Default)");
 			break;
-		  case POWER_27:
-			return F("27dBm");
+		  case POWER_17:
+			return F("17dBm");
 			break;
-		  case POWER_24:
-			return F("24dBm");
+		  case POWER_13:
+			return F("13dBm");
 			break;
-		  case POWER_21:
-			return F("21dBm");
+		  case POWER_10:
+			return F("10dBm");
 			break;
 		  default:
 			return F("Invalid transmission power param");

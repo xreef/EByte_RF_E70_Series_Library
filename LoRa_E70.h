@@ -37,7 +37,7 @@
 #if !defined(ARDUINO_ARCH_STM32) && !defined(ESP32) && !defined(ARDUINO_ARCH_SAMD) && !defined(ARDUINO_ARCH_MBED) && !defined(__STM32F1__) && !defined(__STM32F4__)
 	#define ACTIVATE_SOFTWARE_SERIAL
 #endif
-#if defined(ESP32)
+#if defined(ESP32) || defined(ESP32C3)
 	#define HARDWARE_SERIAL_SELECTABLE_PIN
 #endif
 
@@ -56,7 +56,7 @@
 #define MAX_SIZE_TX_PACKET 2048
 
 // Uncomment to enable printing out nice debug messages.
-#define LoRa_E70_DEBUG
+//#define LoRa_E70_DEBUG
 
 // Define where debug output will be printed.
 #define DEBUG_PRINTER Serial
@@ -257,7 +257,7 @@ class LoRa_E70 {
 #ifdef HARDWARE_SERIAL_SELECTABLE_PIN
 		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
 		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
-		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
+		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
 #endif
 
 #ifdef ACTIVATE_SOFTWARE_SERIAL
@@ -282,26 +282,34 @@ class LoRa_E70 {
 
 		ResponseStatus sendMessage(const void *message, const uint8_t size);
 
+        ResponseStatus streamMessage(Stream *streamLocal);
+        ResponseStatus streamStructMessage(const void *message, const uint8_t size, Stream *streamLocal);
+
 	    ResponseContainer receiveMessageUntil(char delimiter = '\0');
 		ResponseStructContainer receiveMessage(const uint8_t size);
-		ResponseStructContainer receiveMessageRSSI(const uint8_t size);
 	        
-        ResponseStructContainer receiveMessageComplete(const uint8_t size);
-		ResponseContainer receiveMessageComplete();
-	
+//		Stream getStream();
+		int read();
+
 		ResponseStatus sendMessage(const String message);
 		ResponseContainer receiveMessage();
-		ResponseContainer receiveMessageRSSI();
+//		ResponseContainer receiveMessageRSSI();
 
 		ResponseStatus sendFixedMessage(byte ADDH, byte ADDL, byte CHAN, const String message);
-
         ResponseStatus sendFixedMessage(byte ADDH,byte ADDL, byte CHAN, const void *message, const uint8_t size);
+
+//        ResponseStatus sendFixedMessage(byte ADDH,byte ADDL, byte CHAN, Stream *stream);
         ResponseStatus sendBroadcastFixedMessage(byte CHAN, const void *message, const uint8_t size);
         ResponseStatus sendBroadcastFixedMessage(byte CHAN, const String message);
 
 		ResponseContainer receiveInitialMessage(const uint8_t size);
 
+		Status receiveStreamStruct(void *structureManaged, uint16_t size_);
+		ResponseStructContainer receiveStreamMessage(const uint8_t size);
+
         int available();
+		void flush();
+
 	private:
 		HardwareSerial* hs;
 
@@ -374,8 +382,12 @@ class LoRa_E70 {
 
 		void managedDelay(unsigned long timeout);
 		Status waitCompleteResponse(unsigned long timeout = 1000, unsigned int waitNoAux = 100);
-		void flush();
 		void cleanUARTBuffer();
+
+        ResponseStructContainer receiveMessageComplete(const uint8_t size);
+		ResponseContainer receiveMessageComplete();
+
+		ResponseStructContainer receiveStreamMessageComplete(const uint8_t size);
 
 		Status sendStruct(void *structureManaged, uint16_t size_);
 		Status receiveStruct(void *structureManaged, uint16_t size_);
