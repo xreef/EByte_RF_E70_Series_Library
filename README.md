@@ -1,4 +1,4 @@
-﻿Ebyte LoRa E70 CC1310: exploring library (esp32, esp8266, STM32, Arduino, Raspberry Pi Pico)
+﻿Ebyte LoRa E70 CC1310: library (esp32, esp8266, STM32, Arduino, Raspberry Pi Pico)
 ============================================================================================
 
 ![Renzo Mischianti](https://lh3.googleusercontent.com/a/ACg8ocKfEyFEMAl0BWM4Ues1akNqg3-3VFJhAjaXyauxNOrVrnln=s96-c?sz=50) Renzo Mischianti
