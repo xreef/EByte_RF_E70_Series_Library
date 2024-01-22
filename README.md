@@ -18,6 +18,12 @@ Introduction to EByte LoRa E70
 
 The EByte E70 is a LoRa module designed for long-range wireless communication. It operates in the sub-gigahertz frequency bands, making it ideal for various applications that require long-range communication and low power consumption. Its versatility and efficiency have made it a popular choice in IoT (Internet of Things) applications, smart city projects, and industrial automation.
 
+CHANGELOG
+-----------------------------
+0.0.10  Try to remove resource folder to permit to install from Arduino Library Manager
+0.0.9   First release
+
+
 Key Features of the EByte E70
 -----------------------------
 

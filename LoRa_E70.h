@@ -2,7 +2,7 @@
  * EBYTE LoRa E70 Series
  *
  * AUTHOR:  Renzo Mischianti
- * VERSION: 0.0.9
+ * VERSION: 0.0.10
  *
  * https://www.mischianti.org
  *
