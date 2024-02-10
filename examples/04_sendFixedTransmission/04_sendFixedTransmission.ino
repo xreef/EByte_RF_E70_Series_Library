@@ -1,5 +1,5 @@
 /*
- * EBYTE LoRa E70
+ * EBYTE RF E70
  * Send a string message to a fixed point ADDH ADDL CHAN
  *
  * You must configure 2 device: one as SENDER (with FIXED SENDER config) and uncomment the relative
@@ -38,54 +38,54 @@
 //#define DESTINATION_ADDL 2
 
 #include "Arduino.h"
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
 // ---------- esp8266 pins --------------
-//LoRa_E70 e70ttl(RX, TX, AUX, M0, M1, M2);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(D3, D4, D5, D7, D6, D7); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
-//LoRa_E70 e70ttl(D2, D3); // Config without connect AUX and M0 M1
+//RF_E70 e70ttl(RX, TX, AUX, M0, M1, M2);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
+//RF_E70 e70ttl(D3, D4, D5, D7, D6, D7); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(D2, D3); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(D2, D3); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, D5, D6, D7, D8); // AUX M0 M1
+//RF_E70 e70ttl(&mySerial, D5, D6, D7, D8); // AUX M0 M1
 // -------------------------------------
 
 // ---------- Arduino pins --------------
-//LoRa_E70 e70ttl(4, 5, 3, 8, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
-//LoRa_E70 e70ttl(4, 5); // Config without connect AUX and M0 M1
+//RF_E70 e70ttl(4, 5, 3, 8, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(4, 5); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(4, 5); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, 3, 8, 7, 6); // AUX M0 M1
+//RF_E70 e70ttl(&mySerial, 3, 8, 7, 6); // AUX M0 M1
 // -------------------------------------
 
 // ------------- Arduino Nano 33 IoT -------------
-// LoRa_E70 e70ttl(&Serial1, 2, 4, 5, 6); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1, 2, 4, 5, 6); //  RX AUX M0 M1
 // -------------------------------------------------
 
 // ------------- Arduino MKR WiFi 1010 -------------
-// LoRa_E70 e70ttl(&Serial1, 0, 2, 3, 4); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1, 0, 2, 3, 4); //  RX AUX M0 M1
 // -------------------------------------------------
 
 // ---------- esp32c3 pins --------------
-// LoRa_E70 e70ttl(&Serial1,  1, 2, 3, 4,); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1,  1, 2, 3, 4,); //  RX AUX M0 M1
 
-LoRa_E70 e70ttl(4, 5, &Serial1, 6, 1, 2, 3, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
+RF_E70 e70ttl(4, 5, &Serial1, 6, 1, 2, 3, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
 // -------------------------------------
 
 // ---------- esp32 pins --------------
-// LoRa_E70 e70ttl(&Serial2, 15, 23, 19, 22); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial2, 15, 23, 19, 22); //  RX AUX M0 M1
 
-//LoRa_E70 e70ttl(&Serial2, 22, 4, 18, 21, 19, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(&Serial2, 22, 4, 18, 21, 19, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
 // -------------------------------------
 
 // ---------- Raspberry PI Pico pins --------------
-// LoRa_E70 e70ttl(&Serial2, 2, 10, 11, 12); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial2, 2, 10, 11, 12); //  RX AUX M0 M1
 // -------------------------------------
 
 // ---------------- STM32 --------------------
 // HardwareSerial Serial2(USART2);   // PA3  (RX)  PA2  (TX)
-// LoRa_E70 e70ttl(&Serial2, PA0, PB0, PB1, PB10); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial2, PA0, PB0, PB1, PB10); //  RX AUX M0 M1
 // -------------------------------------------------
 
  void printParameters(struct Configuration configuration);

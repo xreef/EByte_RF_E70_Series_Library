@@ -1,27 +1,28 @@
-﻿Ebyte LoRa E70 CC1310: library (esp32, esp8266, STM32, Arduino, Raspberry Pi Pico)
+﻿Ebyte RF E70 CC1310: library (esp32, esp8266, STM32, Arduino, Raspberry Pi Pico)
 ============================================================================================
 
 ![Renzo Mischianti](https://lh3.googleusercontent.com/a/ACg8ocKfEyFEMAl0BWM4Ues1akNqg3-3VFJhAjaXyauxNOrVrnln=s96-c?sz=50) Renzo Mischianti
 
-[Support forum](https://mischianti.org/forums/forum/mischiantis-libraries/ebyte-lora-e70-uart-devices-cc1310/)
+[Support forum](https://mischianti.org/forums/forum/mischiantis-libraries/ebyte-rf-e70-uart-devices-cc1310/)
 
-![Cover](https://mischianti.org/wp-content/uploads/2024/01/Ebyte-LoRa-E70-CC1310-exploring-library-esp32-STM32-Arduino-Raspberry-Pi-Pico-1024x552.jpg)
+![Cover](https://mischianti.org/wp-content/uploads/2024/01/Ebyte-RF-E70-CC1310-exploring-library-esp32-STM32-Arduino-Raspberry-Pi-Pico-1024x552.jpg)
 
-Ebyte LoRa E70 CC1310: exploring library (esp32, STM32, Arduino, Raspberry Pi Pico)
+Ebyte RF E70 CC1310: exploring library (esp32, STM32, Arduino, Raspberry Pi Pico)
 
-The world of wireless communication has been revolutionized by the advent of Long Range (LoRa) technology, offering a blend of long-range capabilities and low power consumption. The EByte LoRa E70 module stands out as a prominent player among the various emerging modules. This article delves into the features, applications, and operational modes of the EByte E70, providing insights into its capabilities and potential uses.
+The world of wireless communication has been revolutionized by the advent of Long Range (RF) technology, offering a blend of long-range capabilities and low power consumption. The EByte RF E70 module stands out as a prominent player among the various emerging modules. This article delves into the features, applications, and operational modes of the EByte E70, providing insights into its capabilities and potential uses.
 
 The E70 is based on CC1310 series device. This device is not just a microcontroller (MCU); it is a fully integrated wireless MCU designed specifically for low-power, long-range wireless applications. The CC1310 combines a powerful ARM Cortex-M3 processor with a highly efficient sub-1 GHz radio, making it an ideal solution for a wide range of applications, from smart metering to industrial automation and environmental monitoring.
 
-Introduction to EByte LoRa E70
+Introduction to EByte RF E70
 ------------------------------
 
-The EByte E70 is a LoRa module designed for long-range wireless communication. It operates in the sub-gigahertz frequency bands, making it ideal for various applications that require long-range communication and low power consumption. Its versatility and efficiency have made it a popular choice in IoT (Internet of Things) applications, smart city projects, and industrial automation.
+The EByte E70 is a RF module designed for long-range wireless communication. It operates in the sub-gigahertz frequency bands, making it ideal for various applications that require long-range communication and low power consumption. Its versatility and efficiency have made it a popular choice in IoT (Internet of Things) applications, smart city projects, and industrial automation.
 
 CHANGELOG
 -----------------------------
-0.0.10  Try to remove resource folder to permit to install from Arduino Library Manager
-0.0.9   First release
+2024-02-10 0.0.11  Name issue, change name and description
+2024-01-01 0.0.10  Try to remove resource folder to permit to install from Arduino Library Manager
+2024-01-01 0.0.9   First release
 
 
 Key Features of the EByte E70
@@ -33,7 +34,7 @@ Key Features of the EByte E70
 4.  **Configurable Parameters**: Users can configure parameters like frequency, power output, and data rate, making them adaptable to various communication needs.
 5.  **Forward Error Correction (FEC)**: FEC is a method for error control in data transmission. It adds redundancy to the transmitted information using a predetermined algorithm. This redundancy allows the receiver to detect and correct errors without the need for retransmission.
 
-![FEC](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-FEC-Forward-Error-Correction-example.jpg)
+![FEC](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-FEC-Forward-Error-Correction-example.jpg)
 
 
 Device specifications
@@ -71,16 +72,16 @@ Library
 
 I created a library to simplify usage. You can find It on my GitHub
 
-![](https://github-readme-stats.vercel.app/api/pin/?username=xreef&repo=EByte_LoRa_E70_Series_Library&show_owner=true)
+![](https://github-readme-stats.vercel.app/api/pin/?username=xreef&repo=EByte_RF_E70_Series_Library&show_owner=true)
 
 Or you can directly download from Arduino library manager.
 
-LoRa E70 variants
+RF E70 variants
 -----------------
 
 E70 has various form factors, the design changes, and also specifications.
 
-![Dimensions of EByte LoRa E70 xxxTxxS Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxTxxS-size-1.jpg)
+![Dimensions of EByte RF E70 xxxTxxS Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxTxxS-size-1.jpg)
 
 **E70-433T30S**:
 
@@ -89,7 +90,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-107 to -109 dBm**
 *   Reference Distance: **6000m**
 
-![EByte LoRa E70 xxxT1xxS Module Dimensions](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxT1xxS-size.jpg)
+![EByte RF E70 xxxT1xxS Module Dimensions](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxT1xxS-size.jpg)
 
 **E70-433T14S**:
 
@@ -100,7 +101,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-109 to -111 dBm** for T14S and **\-108 dBm** for T14S2 (slightly better sensitivity for the T14S)
 *   Reference Distance: **1500m**
 
-![Dimensions of the EByte LoRa E70 xxxT1xxS2 Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxT1xxS2-size-1.jpg)
+![Dimensions of the EByte RF E70 xxxT1xxS2 Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxT1xxS2-size-1.jpg)
 
 **E70-433T14S2**:
 
@@ -109,7 +110,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-109 to -111 dBm** for T14S and **\-108 dBm** for T14S2 (slightly better sensitivity for the T14S)
 *   Form factors are simpler to manage.
 
-![Dimensions of EByte LoRa e70 xxxMTxxS](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxMTxxS-size.jpg)
+![Dimensions of EByte RF e70 xxxMTxxS](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxMTxxS-size.jpg)
 
 **E70-433MT14S**:
 
@@ -147,9 +148,9 @@ Constructor
 
 I made a set of numerous constructors because we can have more options and situations to manage.
 
-		LoRa\_E70(byte txE70pin, byte rxE70pin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
-		LoRa\_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
-		LoRa\_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
+		RF\_E70(byte txE70pin, byte rxE70pin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
+		RF\_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
+		RF\_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART\_BPS\_RATE bpsRate = UART\_BPS\_RATE\_9600);
 
 The first set of constructors is created to delegate Serial and other pins to the library.
 
@@ -162,33 +163,33 @@ A simple example is
 
 A simple example is
 
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
-LoRa_E70 e70ttl(2, 3);  // e70 TX e70 RX
-// LoRa_E70 e70ttl(2, 3, 5, 6, 7);  // e70 TX e70 RX
+RF_E70 e70ttl(2, 3);  // e70 TX e70 RX
+// RF_E70 e70ttl(2, 3, 5, 6, 7);  // e70 TX e70 RX
 We can use a SoftwareSerial directly with another constructor
 
-		LoRa_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
 The example upper with this constructor can be done like so.
 
 #include <SoftwareSerial.h>
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
 SoftwareSerial mySerial(2, 3); // e70 TX e70 RX
-LoRa_E70 e70ttl(&mySerial);
-// LoRa_E70 e70ttl(&mySerial, 5, 6, 7, 8);
+RF_E70 e70ttl(&mySerial);
+// RF_E70 e70ttl(&mySerial, 5, 6, 7, 8);
 The last set of constructors is to permit an HardwareSerial instead of SoftwareSerial.
 
-		LoRa_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
 For esp32, you have three additional constructors to permit to manage pins for HardWare serial.
 
-			LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
-			LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
-			LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
+			RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
+			RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
+			RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, uint32_t serialConfig = SERIAL_8N1);
 
 
 Begin
@@ -406,7 +407,7 @@ Send receive messages
 
 Normal/Transparent transmission mode sends messages to all devices with the same address and channel.
 
-![EByte LoRa Transmission Types Comparative Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-difference-from-transmission-type-diagram-1024x579.jpg)
+![EByte RF Transmission Types Comparative Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-difference-from-transmission-type-diagram-1024x579.jpg)
 
 There are a lot of methods to send/receive messages, and we are going to explain in detail:
 
@@ -508,7 +509,7 @@ Here is a simple example
 
 Fixed transmission has more scenarios
 
-![EByte LoRa Fixed Transmission Example Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-Fixed-Transmission-example-schema.jpg)
+![EByte RF Fixed Transmission Example Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-Fixed-Transmission-example-schema.jpg)
 
 If you send it to a specific device (second scenario Fixed transmission), you must add ADDL, ADDH, and CHAN to identify It directly.
 
@@ -518,9 +519,9 @@ If you want to send a message to all devices in a specified Channel, you can use
 
 ResponseStatus rs = e70ttl.sendBroadcastFixedMessage(0x17, "Message to a devices of a channel");
 
-![EByte LoRa Network Broadcast Transmission Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-Broadcast-Transmission-example-schema.jpg)
+![EByte RF Network Broadcast Transmission Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-Broadcast-Transmission-example-schema.jpg)
 
-EByte LoRa Network Broadcast Transmission Diagram
+EByte RF Network Broadcast Transmission Diagram
 
 If you wish to receive all broadcast messages in the network, you must set your `ADDH` and `ADDL` with `BROADCAST_ADDRESS`.
 
@@ -547,9 +548,9 @@ Continuous mode
 
 E70 offers the continuous mode by setting the same ADDH, ADDL, and CHAN. You can stream a lot of data or continuous data.
 
-![EByte LoRa continuous mode diagram](https://mischianti.org/wp-content/uploads/2024/01/EByte-LoRa-continuous-mode-diagram.jpg)
+![EByte RF continuous mode diagram](https://mischianti.org/wp-content/uploads/2024/01/EByte-RF-continuous-mode-diagram.jpg)
 
-EByte LoRa continuous mode diagram
+EByte RF continuous mode diagram
 
 ### Continuous Mode
 
@@ -587,7 +588,7 @@ When you use continuous transmission mode, the module sends a continuous stream 
 
 To send a simple stream (without any preamble) you can use
 
-ResponseStatus LoRa\_E70::streamMessage(Stream \*streamLocal)
+ResponseStatus RF\_E70::streamMessage(Stream \*streamLocal)
 
 A possible implementation can be the stream of a file.
 
@@ -627,16 +628,17 @@ As you can see, you can use read, which is a classical `stream.read()`.
 
 Not all situations can be a continuous stream; sometimes, we need to send data as a byte array; in this situation, you need a preamble with the file information, and you can use the command.
 
-ResponseStatus LoRa\_E70::streamStructMessage(const void \*message, const uint8\_t size, Stream \*streamLocal)
+ResponseStatus RF\_E70::streamStructMessage(const void \*message, const uint8\_t size, Stream \*streamLocal)
 
 You can identify the first part of the send method It’s the same as the send struct described before; the last parameter is the stream to send.
 
 To receive all, you must first call the command to get the structure (preamble)
 
-ResponseStructContainer LoRa\_E70::receiveStreamMessage(const uint8\_t size)
+ResponseStructContainer RF\_E70::receiveStreamMessage(const uint8\_t size)
 
 Then, we get the stream as already described.
 
 Thanks
 ------
 
+[Deploy status](https://downloads.arduino.cc/libraries/logs/github.com/xreef/EByte_RF_E70_Series_Library/)

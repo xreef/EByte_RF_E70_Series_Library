@@ -1,6 +1,6 @@
 /*
- * EBYTE LoRa E70 Series
- * https://www.mischianti.org/category/my-libraries/lora-e22-devices/
+ * EBYTE RF E70 Series
+ * https://www.mischianti.org/category/my-libraries/rf-e22-devices/
  *
  * The MIT License (MIT)
  *
@@ -25,10 +25,10 @@
  * THE SOFTWARE.
  */
 
-#ifndef EBYTE_LORA_E70_LIBRARY_H
-#define EBYTE_LORA_E70_LIBRARY_H
+#ifndef EBYTE_RF_E70_LIBRARY_H
+#define EBYTE_RF_E70_LIBRARY_H
 
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
 #endif
 

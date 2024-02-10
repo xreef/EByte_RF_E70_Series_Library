@@ -1,6 +1,6 @@
 /*
- * EBYTE LoRa E700 Series
- * https://www.mischianti.org/category/my-libraries/lora-e70-devices/
+ * EBYTE RF E700 Series
+ * https://www.mischianti.org/category/my-libraries/rf-e70-devices/
  *
  * The MIT License (MIT)
  *
@@ -29,10 +29,10 @@
  * THE SOFTWARE.
  */
 
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
 #ifdef ACTIVATE_SOFTWARE_SERIAL
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
     SoftwareSerial* mySerial = new SoftwareSerial((uint8_t)this->txE70pin, (uint8_t)this->rxE70pin); // "RX TX" // @suppress("Abstract class cannot be instantiated")
@@ -41,7 +41,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate){
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
     this->auxPin = auxPin;
@@ -51,7 +51,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART_BPS_RATE bpsR
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -69,7 +69,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m
 }
 #endif
 
-LoRa_E70::LoRa_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate){ //, uint32_t serialConfig
+RF_E70::RF_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate){ //, uint32_t serialConfig
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -83,7 +83,7 @@ LoRa_E70::LoRa_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate){ //, uint32_t 
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){ // , uint32_t serialConfig
+RF_E70::RF_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){ // , uint32_t serialConfig
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
     this->auxPin = auxPin;
@@ -98,7 +98,7 @@ LoRa_E70::LoRa_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){ 
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){ //, uint32_t serialConfig
+RF_E70::RF_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){ //, uint32_t serialConfig
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -119,7 +119,7 @@ LoRa_E70::LoRa_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, 
 }
 
 #ifdef HARDWARE_SERIAL_SELECTABLE_PIN
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate, uint32_t serialConfig){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate, uint32_t serialConfig){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -133,7 +133,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BP
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
     this->auxPin = auxPin;
@@ -148,7 +148,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte au
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
+RF_E70::RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -172,7 +172,7 @@ LoRa_E70::LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte au
 
 #ifdef ACTIVATE_SOFTWARE_SERIAL
 
-LoRa_E70::LoRa_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -181,7 +181,7 @@ LoRa_E70::LoRa_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate){
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
     this->auxPin = auxPin;
@@ -191,7 +191,7 @@ LoRa_E70::LoRa_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate){
 
     this->bpsRate = bpsRate;
 }
-LoRa_E70::LoRa_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){
+RF_E70::RF_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate){
     this->txE70pin = txE70pin;
     this->rxE70pin = rxE70pin;
 
@@ -208,7 +208,7 @@ LoRa_E70::LoRa_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, 
 }
 #endif
 
-bool LoRa_E70::begin(){
+bool RF_E70::begin(){
 	DEBUG_PRINT("RX MIC ---> ");
 	DEBUG_PRINTLN(this->txE70pin);
 	DEBUG_PRINT("TX MIC ---> ");
@@ -295,7 +295,7 @@ a timeout is provided to avoid an infinite loop
 
 */
 
-Status LoRa_E70::waitCompleteResponse(unsigned long timeout, unsigned int waitNoAux) {
+Status RF_E70::waitCompleteResponse(unsigned long timeout, unsigned int waitNoAux) {
 
 	Status result = E70_SUCCESS;
 
@@ -340,7 +340,7 @@ just poll internal time until timeout is reached
 */
 
 
-void LoRa_E70::managedDelay(unsigned long timeout) {
+void RF_E70::managedDelay(unsigned long timeout) {
 
 	unsigned long t = millis();
 
@@ -359,8 +359,8 @@ Method to indicate availability
 
 */
 
-//int LoRa_E70::available(unsigned long timeout) {
-int LoRa_E70::available() {
+//int RF_E70::available(unsigned long timeout) {
+int RF_E70::available() {
 //	unsigned long t = millis();
 //
 //	// make darn sure millis() is not about to reach max data type limit and start over
@@ -386,7 +386,7 @@ int LoRa_E70::available() {
 //	}
 }
 
-int LoRa_E70::read() {
+int RF_E70::read() {
 	return this->serialDef.stream->read();
 }
 
@@ -396,12 +396,12 @@ Method to indicate availability
 
 */
 
-void LoRa_E70::flush() {
+void RF_E70::flush() {
 	this->serialDef.stream->flush();
 }
 
 
-void LoRa_E70::cleanUARTBuffer()
+void RF_E70::cleanUARTBuffer()
 {
 //  bool IsNull = true;
 
@@ -427,7 +427,7 @@ types each handle ints floats differently
 
 */
 
-Status LoRa_E70::sendStruct(void *structureManaged, uint16_t size_) {
+Status RF_E70::sendStruct(void *structureManaged, uint16_t size_) {
 		if (this->mode == MODE_SUB_PACKAGE_2 &&  size_ > MAX_SIZE_TX_PACKET + 2){
 			return ERR_E70_PACKET_TOO_BIG;
 		}
@@ -473,7 +473,7 @@ types each handle ints floats differently
 */
 
 
-Status LoRa_E70::receiveStruct(void *structureManaged, uint16_t size_) {
+Status RF_E70::receiveStruct(void *structureManaged, uint16_t size_) {
 	Status result = E70_SUCCESS;
 
 	uint8_t len = this->serialDef.stream->readBytes((uint8_t *) structureManaged, size_);
@@ -488,7 +488,7 @@ Status LoRa_E70::receiveStruct(void *structureManaged, uint16_t size_) {
 			result = ERR_E70_NO_RESPONSE_FROM_DEVICE;
 		}else{
 			result = ERR_E70_DATA_SIZE_NOT_MATCH;
-			#ifdef LoRa_E70_DEBUG
+			#ifdef RF_E70_DEBUG
 				DEBUG_PRINT(F("Configuration packet: "));
 				byte* byteArray = (byte*)&structureManaged;  // Cast the address of config to a byte pointer
 				for (int i = 0; i < sizeof(Configuration); i++) {
@@ -520,7 +520,7 @@ method to set the mode (program, normal, etc.)
 
 */
 
-Status LoRa_E70::setMode(MODE_TYPE mode) {
+Status RF_E70::setMode(MODE_TYPE mode) {
 
 	// data sheet claims module needs some extra time after mode setting (2ms)
 	// most of my projects uses 10 ms, but 40ms is safer
@@ -602,11 +602,11 @@ Status LoRa_E70::setMode(MODE_TYPE mode) {
 	return res;
 }
 
-MODE_TYPE LoRa_E70::getMode(){
+MODE_TYPE RF_E70::getMode(){
 	return this->mode;
 }
 
-bool LoRa_E70::writeProgramCommand(PROGRAM_COMMAND cmd){
+bool RF_E70::writeProgramCommand(PROGRAM_COMMAND cmd){
     uint8_t CMD[3] = {cmd, cmd, cmd};
     uint8_t size = this->serialDef.stream->write(CMD, 3);
     this->managedDelay(50);  //need ti check
@@ -615,7 +615,7 @@ bool LoRa_E70::writeProgramCommand(PROGRAM_COMMAND cmd){
 }
 
 
-ResponseStructContainer LoRa_E70::getConfiguration(){
+ResponseStructContainer RF_E70::getConfiguration(){
 	ResponseStructContainer rc;
 
 	rc.status.code = checkUARTConfiguration(MODE_PROGRAM);
@@ -631,7 +631,7 @@ ResponseStructContainer LoRa_E70::getConfiguration(){
 	rc.data = malloc(sizeof(Configuration));
 	rc.status.code = this->receiveStruct((uint8_t *)rc.data, sizeof(Configuration));
 
-//#ifdef LoRa_E70_DEBUG
+//#ifdef RF_E70_DEBUG
 //	 this->printParameters((Configuration *)rc.data);
 //#endif
 
@@ -653,14 +653,14 @@ ResponseStructContainer LoRa_E70::getConfiguration(){
 	return rc;
 }
 
-RESPONSE_STATUS LoRa_E70::checkUARTConfiguration(MODE_TYPE mode){
+RESPONSE_STATUS RF_E70::checkUARTConfiguration(MODE_TYPE mode){
 	if ((mode==MODE_CONFIGURATION_3 || mode==MODE_CONFIGURATION_5 )  && this->bpsRate!=UART_BPS_RATE_9600){
 		return ERR_E70_WRONG_UART_CONFIG;
 	}
 	return E70_SUCCESS;
 }
 
-ResponseStatus LoRa_E70::setConfiguration(Configuration configuration, PROGRAM_COMMAND saveType){
+ResponseStatus RF_E70::setConfiguration(Configuration configuration, PROGRAM_COMMAND saveType){
 	ResponseStatus rc;
 
 	rc.code = checkUARTConfiguration(MODE_PROGRAM);
@@ -678,7 +678,7 @@ ResponseStatus LoRa_E70::setConfiguration(Configuration configuration, PROGRAM_C
 //	configuration.STARTING_ADDRESS = REG_ADDRESS_CFG;
 //	configuration.LENGHT = PL_CONFIGURATION;
 
-		#ifdef LoRa_E70_DEBUG
+		#ifdef RF_E70_DEBUG
 			DEBUG_PRINT(F("Configuration packet: "));
 			byte* byteArray = (byte*)&configuration;  // Cast the address of config to a byte pointer
 			for (int i = 0; i < sizeof(Configuration); i++) {
@@ -701,16 +701,17 @@ ResponseStatus LoRa_E70::setConfiguration(Configuration configuration, PROGRAM_C
 	}
 
 	rc.code = this->receiveStruct((uint8_t *)&configuration, sizeof(Configuration));
-	if (rc.code!=E70_SUCCESS) {
-		this->setMode(prevMode);
-		return rc;
-	}
+	// Return 5bytes leng structure that It's strange
+//	if (rc.code!=E70_SUCCESS) {
+//		this->setMode(prevMode);
+//		return rc;
+//	}
 
-//	#ifdef LoRa_E70_DEBUG
+//	#ifdef RF_E70_DEBUG
 //		 this->printParameters((Configuration *)&configuration);
 //	#endif
 
-#ifdef LoRa_E70_DEBUG
+#ifdef RF_E70_DEBUG
 	DEBUG_PRINT(F("Configuration packet: "));
 	byte* byteArray2 = (byte*)&configuration;  // Cast the address of config to a byte pointer
 	for (int i = 0; i < sizeof(Configuration); i++) {
@@ -727,17 +728,17 @@ ResponseStatus LoRa_E70::setConfiguration(Configuration configuration, PROGRAM_C
 	rc.code = this->setMode(prevMode);
 	if (rc.code!=E70_SUCCESS) return rc;
 
-	if (WRONG_FORMAT == ((Configuration *)&configuration)->COMMAND){
-		rc.code = ERR_E70_WRONG_FORMAT;
-	}
-	if (saveType != ((Configuration *)&configuration)->COMMAND){
-		rc.code = ERR_E70_HEAD_NOT_RECOGNIZED;
-	}
+//	if (WRONG_FORMAT == ((Configuration *)&configuration)->COMMAND){
+//		rc.code = ERR_E70_WRONG_FORMAT;
+//	}
+//	if (saveType != ((Configuration *)&configuration)->COMMAND){
+//		rc.code = ERR_E70_HEAD_NOT_RECOGNIZED;
+//	}
 
 	return rc;
 }
 
-ResponseStructContainer LoRa_E70::getModuleInformation(){
+ResponseStructContainer RF_E70::getModuleInformation(){
 	ResponseStructContainer rc;
 
 	rc.status.code = checkUARTConfiguration(MODE_PROGRAM);
@@ -791,7 +792,7 @@ ResponseStructContainer LoRa_E70::getModuleInformation(){
 }
 
 
-ResponseStatus LoRa_E70::resetModule(){
+ResponseStatus RF_E70::resetModule(){
 	ResponseStatus status;
 
 	status.code = checkUARTConfiguration(MODE_PROGRAM);
@@ -817,14 +818,14 @@ ResponseStatus LoRa_E70::resetModule(){
 	return status;
 }
 
-ResponseContainer LoRa_E70::receiveMessage(){
-	return LoRa_E70::receiveMessageComplete();
+ResponseContainer RF_E70::receiveMessage(){
+	return RF_E70::receiveMessageComplete();
 }
-//ResponseContainer LoRa_E70::receiveMessageRSSI(){
-//	return LoRa_E70::receiveMessageComplete(true);
+//ResponseContainer RF_E70::receiveMessageRSSI(){
+//	return RF_E70::receiveMessageComplete(true);
 //}
 
-ResponseContainer LoRa_E70::receiveMessageComplete(){
+ResponseContainer RF_E70::receiveMessageComplete(){
 	ResponseContainer rc;
 	rc.status.code = E70_SUCCESS;
 	String tmpData = this->serialDef.stream->readString();
@@ -843,11 +844,11 @@ ResponseContainer LoRa_E70::receiveMessageComplete(){
 	return rc;
 }
 
-//Stream LoRa_E70::getStream(){
+//Stream RF_E70::getStream(){
 //	return this->serialDef.stream;
 //}
 
-ResponseContainer LoRa_E70::receiveMessageUntil(char delimiter){
+ResponseContainer RF_E70::receiveMessageUntil(char delimiter){
 	ResponseContainer rc;
 	rc.status.code = E70_SUCCESS;
 	rc.data = this->serialDef.stream->readStringUntil(delimiter);
@@ -860,7 +861,7 @@ ResponseContainer LoRa_E70::receiveMessageUntil(char delimiter){
 
 	return rc;
 }
-ResponseContainer LoRa_E70::receiveInitialMessage(uint8_t size){
+ResponseContainer RF_E70::receiveInitialMessage(uint8_t size){
 	ResponseContainer rc;
 	rc.status.code = E70_SUCCESS;
 	char buff[size];
@@ -880,14 +881,14 @@ ResponseContainer LoRa_E70::receiveInitialMessage(uint8_t size){
 }
 
 
-ResponseStructContainer LoRa_E70::receiveMessage(const uint8_t size){
-	return LoRa_E70::receiveMessageComplete(size);
+ResponseStructContainer RF_E70::receiveMessage(const uint8_t size){
+	return RF_E70::receiveMessageComplete(size);
 }
-//ResponseStructContainer LoRa_E70::receiveMessageRSSI(const uint8_t size){
-//	return LoRa_E70::receiveMessageComplete(size, true);
+//ResponseStructContainer RF_E70::receiveMessageRSSI(const uint8_t size){
+//	return RF_E70::receiveMessageComplete(size, true);
 //}
 
-ResponseStructContainer LoRa_E70::receiveMessageComplete(const uint8_t size){
+ResponseStructContainer RF_E70::receiveMessageComplete(const uint8_t size){
 	ResponseStructContainer rc;
 
 	rc.data = malloc(size);
@@ -901,11 +902,11 @@ ResponseStructContainer LoRa_E70::receiveMessageComplete(const uint8_t size){
 	return rc;
 }
 
-ResponseStructContainer LoRa_E70::receiveStreamMessage(const uint8_t size){
-	return LoRa_E70::receiveStreamMessageComplete(size);
+ResponseStructContainer RF_E70::receiveStreamMessage(const uint8_t size){
+	return RF_E70::receiveStreamMessageComplete(size);
 }
 
-ResponseStructContainer LoRa_E70::receiveStreamMessageComplete(const uint8_t size){
+ResponseStructContainer RF_E70::receiveStreamMessageComplete(const uint8_t size){
 	ResponseStructContainer rc;
 
 	rc.data = malloc(size);
@@ -917,7 +918,7 @@ ResponseStructContainer LoRa_E70::receiveStreamMessageComplete(const uint8_t siz
 	return rc;
 }
 
-Status LoRa_E70::receiveStreamStruct(void *structureManaged, uint16_t size_) {
+Status RF_E70::receiveStreamStruct(void *structureManaged, uint16_t size_) {
 	Status result = E70_SUCCESS;
 
 	uint8_t len = this->serialDef.stream->readBytes((uint8_t *) structureManaged, size_);
@@ -940,14 +941,14 @@ Status LoRa_E70::receiveStreamStruct(void *structureManaged, uint16_t size_) {
 }
 
 
-ResponseStatus LoRa_E70::sendMessage(const void *message, const uint8_t size){
+ResponseStatus RF_E70::sendMessage(const void *message, const uint8_t size){
 	ResponseStatus status;
 	status.code = this->sendStruct((uint8_t *)message, size);
 	if (status.code!=E70_SUCCESS) return status;
 
 	return status;
 }
-ResponseStatus LoRa_E70::sendMessage(const String message){
+ResponseStatus RF_E70::sendMessage(const String message){
 	DEBUG_PRINT(F("Send message: "));
 	DEBUG_PRINT(message);
 	byte size = message.length(); // sizeof(message.c_str())+1;
@@ -965,7 +966,7 @@ ResponseStatus LoRa_E70::sendMessage(const String message){
 	return status;
 }
 
-ResponseStatus LoRa_E70::sendFixedMessage(byte ADDH, byte ADDL, byte CHAN, const String message){
+ResponseStatus RF_E70::sendFixedMessage(byte ADDH, byte ADDL, byte CHAN, const String message){
 //	DEBUG_PRINT("String/size: ");
 //	DEBUG_PRINT(message);
 //	DEBUG_PRINT("/");
@@ -1000,7 +1001,7 @@ ResponseStatus LoRa_E70::sendFixedMessage(byte ADDH, byte ADDL, byte CHAN, const
 	memcpy(messageFixed,message.c_str(),size);
 	return this->sendFixedMessage(ADDH, ADDL, CHAN, (uint8_t *)messageFixed, size);
 }
-ResponseStatus LoRa_E70::sendBroadcastFixedMessage(byte CHAN, const String message){
+ResponseStatus RF_E70::sendBroadcastFixedMessage(byte CHAN, const String message){
 	return this->sendFixedMessage(BROADCAST_ADDRESS, BROADCAST_ADDRESS, CHAN, message);
 }
 
@@ -1017,7 +1018,7 @@ FixedStransmission *init_stack(int m){
     return st;
 }
 
-ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, const void *message, const uint8_t size){
+ResponseStatus RF_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, const void *message, const uint8_t size){
 //	#pragma pack(push, 1)
 //	struct FixedStransmission {
 //		byte ADDH = 0;
@@ -1059,7 +1060,7 @@ ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, const
 	return status;
 }
 
-//ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, Stream *streamLocal){
+//ResponseStatus RF_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, Stream *streamLocal){
 ////	#pragma pack(push, 1)
 ////	struct FixedStransmission {
 ////		byte ADDH = 0;
@@ -1145,7 +1146,7 @@ ResponseStatus LoRa_E70::sendFixedMessage( byte ADDH,byte ADDL, byte CHAN, const
 //
 //	return status;
 //}
-ResponseStatus LoRa_E70::streamStructMessage(const void *message, const uint8_t size, Stream *streamLocal){
+ResponseStatus RF_E70::streamStructMessage(const void *message, const uint8_t size, Stream *streamLocal){
 	ResponseStatus status;
 	Status result = E70_SUCCESS;
 
@@ -1203,7 +1204,7 @@ ResponseStatus LoRa_E70::streamStructMessage(const void *message, const uint8_t 
 }
 
 
-ResponseStatus LoRa_E70::streamMessage(Stream *streamLocal){
+ResponseStatus RF_E70::streamMessage(Stream *streamLocal){
 	ResponseStatus status;
 	Status result = E70_SUCCESS;
 
@@ -1239,13 +1240,13 @@ ConfigurationMessage *init_stack_conf(int m){
 }
 
 
-ResponseStatus LoRa_E70::sendBroadcastFixedMessage(byte CHAN, const void *message, const uint8_t size){
+ResponseStatus RF_E70::sendBroadcastFixedMessage(byte CHAN, const void *message, const uint8_t size){
 	return this->sendFixedMessage(0xFF, 0xFF, CHAN, message, size);
 }
 
 #define KeeLoq_NLF		0x3A5C742E
 
-unsigned long LoRa_E70::encrypt(unsigned long data)
+unsigned long RF_E70::encrypt(unsigned long data)
 {
   unsigned long x = data;
   unsigned long r;
@@ -1266,7 +1267,7 @@ unsigned long LoRa_E70::encrypt(unsigned long data)
   return x;
 }
 
-unsigned long LoRa_E70::decrypt(unsigned long data)
+unsigned long RF_E70::decrypt(unsigned long data)
 {
   unsigned long x = data;
   unsigned long r;
@@ -1286,8 +1287,8 @@ unsigned long LoRa_E70::decrypt(unsigned long data)
   }
   return x;
  }
-#ifdef LoRa_E70_DEBUG
-void LoRa_E70::printParameters(struct Configuration *configuration) {
+#ifdef RF_E70_DEBUG
+void RF_E70::printParameters(struct Configuration *configuration) {
 	DEBUG_PRINTLN("----------------------------------------");
 
 	DEBUG_PRINT(F("HEAD : "));  DEBUG_PRINT(configuration->COMMAND, HEX);DEBUG_PRINT(" ");

@@ -1,5 +1,5 @@
 /*
- * LoRa E70
+ * RF E70
  * Set configuration.
  *
  * You must uncommend the correct constructor.
@@ -25,54 +25,54 @@
  *
  */
 #include "Arduino.h"
-#include "LoRa_E70.h"
+#include "RF_E70.h"
 
 // ---------- esp8266 pins --------------
-//LoRa_E70 e70ttl(RX, TX, AUX, M0, M1, M2);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(D3, D4, D5, D7, D6, D7); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
-//LoRa_E70 e70ttl(D2, D3); // Config without connect AUX and M0 M1
+//RF_E70 e70ttl(RX, TX, AUX, M0, M1, M2);  // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
+//RF_E70 e70ttl(D3, D4, D5, D7, D6, D7); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(D2, D3); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(D2, D3); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, D5, D6, D7, D8); // AUX M0 M1
+//RF_E70 e70ttl(&mySerial, D5, D6, D7, D8); // AUX M0 M1
 // -------------------------------------
 
 // ---------- Arduino pins --------------
-//LoRa_E70 e70ttl(4, 5, 3, 8, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
-//LoRa_E70 e70ttl(4, 5); // Config without connect AUX and M0 M1
+//RF_E70 e70ttl(4, 5, 3, 8, 7, 6); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(4, 5); // Config without connect AUX and M0 M1
 
 //#include <SoftwareSerial.h>
 //SoftwareSerial mySerial(4, 5); // Arduino RX <-- e70 TX, Arduino TX --> e70 RX
-//LoRa_E70 e70ttl(&mySerial, 3, 8, 7, 6); // AUX M0 M1
+//RF_E70 e70ttl(&mySerial, 3, 8, 7, 6); // AUX M0 M1
 // -------------------------------------
 
 // ------------- Arduino Nano 33 IoT -------------
-// LoRa_E70 e70ttl(&Serial1, 2, 4, 5, 6); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1, 2, 4, 5, 6); //  RX AUX M0 M1
 // -------------------------------------------------
 
 // ------------- Arduino MKR WiFi 1010 -------------
-// LoRa_E70 e70ttl(&Serial1, 0, 2, 3, 4); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1, 0, 2, 3, 4); //  RX AUX M0 M1
 // -------------------------------------------------
 
 // ---------- esp32c3 pins --------------
-// LoRa_E70 e70ttl(&Serial1,  1, 2, 3, 4,); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial1,  1, 2, 3, 4,); //  RX AUX M0 M1
 
-LoRa_E70 e70ttl(4, 5, &Serial1, 6, 1, 2, 3, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(4, 5, &Serial1, 6, 1, 2, 3, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
 // -------------------------------------
 
 // ---------- esp32 pins --------------
-// LoRa_E70 e70ttl(&Serial2, 15, 23, 19, 22); //  RX AUX M0 M1
+ RF_E70 e70ttl(&Serial2, 15, 23, 19, 22); //  RX AUX M0 M1
 
-//LoRa_E70 e70ttl(&Serial2, 22, 4, 18, 21, 19, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
+//RF_E70 e70ttl(&Serial2, 22, 4, 18, 21, 19, UART_BPS_RATE_9600); //  esp32 RX <-- e70 TX, esp32 TX --> e70 RX AUX M0 M1
 // -------------------------------------
 
 // ---------- Raspberry PI Pico pins --------------
-// LoRa_E70 e70ttl(&Serial2, 2, 10, 11, 12); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial2, 2, 10, 11, 12); //  RX AUX M0 M1
 // -------------------------------------
 
 // ---------------- STM32 --------------------
 // HardwareSerial Serial2(USART2);   // PA3  (RX)  PA2  (TX)
-// LoRa_E70 e70ttl(&Serial2, PA0, PB0, PB1, PB10); //  RX AUX M0 M1
+// RF_E70 e70ttl(&Serial2, PA0, PB0, PB1, PB10); //  RX AUX M0 M1
 // -------------------------------------------------
 
 void printParameters(struct Configuration configuration);
@@ -93,6 +93,7 @@ void setup() {
 	// Startup all pins and UART
 	e70ttl.begin();
 
+	Serial.println("Retrieve configuration!");
 	ResponseStructContainer c;
 	c = e70ttl.getConfiguration();
 	// It's important get configuration pointer before all other operation
@@ -242,11 +243,13 @@ void setup() {
 //	configuration.OPTION.ioDriveMode = IO_D_MODE_PUSH_PULLS_PULL_UPS; // IO Drive
 //	configuration.OPTION.wirelessWakeupTime = WAKE_UP_1000; // Wake up time
 
+	Serial.println("Set configuration!");
 	// Set configuration changed and set to not hold the configuration
 	ResponseStatus rs = e70ttl.setConfiguration(configuration, WRITE_CFG_PWR_DWN_SAVE);
 	Serial.println(rs.getResponseDescription());
 	Serial.println(rs.code);
 
+	Serial.println("Retrieve configuration!");
 	c = e70ttl.getConfiguration();
 	// It's important get configuration pointer before all other operation
 	configuration = *(Configuration*) c.data;

@@ -1,12 +1,12 @@
 ###########################################
-# Syntax Coloring Map For EByte_LoRa_E70_Series-library
+# Syntax Coloring Map For EByte_RF_E70_Series-library
 ###########################################
 
 ###########################################
 # Datatypes (KEYWORD1)
 ###########################################
 
-LoRa_E70	KEYWORD1
+RF_E70	KEYWORD1
 
 ###########################################
 # Methods and Functions (KEYWORD2)

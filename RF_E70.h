@@ -1,5 +1,5 @@
 /*
- * EBYTE LoRa E70 Series
+ * EBYTE RF E70 Series
  *
  * AUTHOR:  Renzo Mischianti
  * VERSION: 0.0.10
@@ -31,8 +31,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#ifndef LoRa_E70_h
-#define LoRa_E70_h
+#ifndef RF_E70_h
+#define RF_E70_h
 
 #if !defined(ARDUINO_ARCH_STM32) && !defined(ESP32) && !defined(ARDUINO_ARCH_SAMD) && !defined(ARDUINO_ARCH_MBED) && !defined(__STM32F1__) && !defined(__STM32F4__)
 	#define ACTIVATE_SOFTWARE_SERIAL
@@ -56,13 +56,13 @@
 #define MAX_SIZE_TX_PACKET 2048
 
 // Uncomment to enable printing out nice debug messages.
-//#define LoRa_E70_DEBUG
+//#define RF_E70_DEBUG
 
 // Define where debug output will be printed.
 #define DEBUG_PRINTER Serial
 
 // Setup debug printing macros.
-#ifdef LoRa_E70_DEBUG
+#ifdef RF_E70_DEBUG
 	#define DEBUG_PRINT(...) { DEBUG_PRINTER.print(__VA_ARGS__); }
 	#define DEBUG_PRINTLN(...) { DEBUG_PRINTER.println(__VA_ARGS__); }
 #else
@@ -177,11 +177,6 @@ struct Channel {
 
 };
 
-struct Crypt {
-	byte CRYPT_H = 0;
-	byte CRYPT_L = 0;
-};
-
 struct Configuration {
 	byte COMMAND = 0;
 
@@ -242,33 +237,33 @@ struct ConfigurationMessage
 //};
 #pragma pack(pop)
 
-class LoRa_E70 {
+class RF_E70 {
 	public:
 #ifdef ACTIVATE_SOFTWARE_SERIAL
-		LoRa_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(byte txE70pin, byte rxE70pin, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(byte txE70pin, byte rxE70pin, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
 #endif
 
-		LoRa_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
 
 #ifdef HARDWARE_SERIAL_SELECTABLE_PIN
-		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
-		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
-		LoRa_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
+		RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
+		RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
+		RF_E70(byte txE70pin, byte rxE70pin, HardwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate, uint32_t serialConfig = SERIAL_8N1);
 #endif
 
 #ifdef ACTIVATE_SOFTWARE_SERIAL
-		LoRa_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
-		LoRa_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, byte auxPin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
+		RF_E70(SoftwareSerial* serial, byte auxPin, byte m0Pin, byte m1Pin, byte m2Pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600);
 #endif
 
-//		LoRa_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
-//		LoRa_E70(HardwareSerial* serial = &Serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
-//		LoRa_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
+//		RF_E70(byte txE70pin, byte rxE70pin, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
+//		RF_E70(HardwareSerial* serial = &Serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
+//		RF_E70(SoftwareSerial* serial, UART_BPS_RATE bpsRate = UART_BPS_RATE_9600, MODE_TYPE mode = MODE_0_NORMAL);
 
 		bool begin();
         Status setMode(MODE_TYPE mode);
@@ -395,7 +390,7 @@ class LoRa_E70 {
 
 		RESPONSE_STATUS checkUARTConfiguration(MODE_TYPE mode);
 
-#ifdef LoRa_E70_DEBUG
+#ifdef RF_E70_DEBUG
 		void printParameters(struct Configuration *configuration);
 #endif
 };
