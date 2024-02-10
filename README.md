@@ -3,9 +3,9 @@
 
 ![Renzo Mischianti](https://lh3.googleusercontent.com/a/ACg8ocKfEyFEMAl0BWM4Ues1akNqg3-3VFJhAjaXyauxNOrVrnln=s96-c?sz=50) Renzo Mischianti
 
-[Support forum](https://mischianti.org/forums/forum/mischiantis-libraries/ebyte-rf-e70-uart-devices-cc1310/)
+[Support forum](https://mischianti.org/forums/forum/mischiantis-libraries/ebyte-lora-e70-uart-devices-cc1310/)
 
-![Cover](https://mischianti.org/wp-content/uploads/2024/01/Ebyte-RF-E70-CC1310-exploring-library-esp32-STM32-Arduino-Raspberry-Pi-Pico-1024x552.jpg)
+![Cover](https://mischianti.org/wp-content/uploads/2024/01/Ebyte-LoRa-E70-CC1310-exploring-library-esp32-STM32-Arduino-Raspberry-Pi-Pico-1024x552.jpg)
 
 Ebyte RF E70 CC1310: exploring library (esp32, STM32, Arduino, Raspberry Pi Pico)
 
@@ -34,7 +34,7 @@ Key Features of the EByte E70
 4.  **Configurable Parameters**: Users can configure parameters like frequency, power output, and data rate, making them adaptable to various communication needs.
 5.  **Forward Error Correction (FEC)**: FEC is a method for error control in data transmission. It adds redundancy to the transmitted information using a predetermined algorithm. This redundancy allows the receiver to detect and correct errors without the need for retransmission.
 
-![FEC](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-FEC-Forward-Error-Correction-example.jpg)
+![FEC](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-FEC-Forward-Error-Correction-example.jpg)
 
 
 Device specifications
@@ -81,7 +81,7 @@ RF E70 variants
 
 E70 has various form factors, the design changes, and also specifications.
 
-![Dimensions of EByte RF E70 xxxTxxS Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxTxxS-size-1.jpg)
+![Dimensions of EByte RF E70 xxxTxxS Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxTxxS-size-1.jpg)
 
 **E70-433T30S**:
 
@@ -90,7 +90,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-107 to -109 dBm**
 *   Reference Distance: **6000m**
 
-![EByte RF E70 xxxT1xxS Module Dimensions](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxT1xxS-size.jpg)
+![EByte RF E70 xxxT1xxS Module Dimensions](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxT1xxS-size.jpg)
 
 **E70-433T14S**:
 
@@ -101,7 +101,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-109 to -111 dBm** for T14S and **\-108 dBm** for T14S2 (slightly better sensitivity for the T14S)
 *   Reference Distance: **1500m**
 
-![Dimensions of the EByte RF E70 xxxT1xxS2 Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxT1xxS2-size-1.jpg)
+![Dimensions of the EByte RF E70 xxxT1xxS2 Module](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxT1xxS2-size-1.jpg)
 
 **E70-433T14S2**:
 
@@ -110,7 +110,7 @@ E70 has various form factors, the design changes, and also specifications.
 *   Receive Sensitivity: **\-109 to -111 dBm** for T14S and **\-108 dBm** for T14S2 (slightly better sensitivity for the T14S)
 *   Form factors are simpler to manage.
 
-![Dimensions of EByte RF e70 xxxMTxxS](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-e70-xxxMTxxS-size.jpg)
+![Dimensions of EByte RF e70 xxxMTxxS](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-e70-xxxMTxxS-size.jpg)
 
 **E70-433MT14S**:
 
@@ -407,7 +407,7 @@ Send receive messages
 
 Normal/Transparent transmission mode sends messages to all devices with the same address and channel.
 
-![EByte RF Transmission Types Comparative Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-difference-from-transmission-type-diagram-1024x579.jpg)
+![EByte RF Transmission Types Comparative Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-difference-from-transmission-type-diagram-1024x579.jpg)
 
 There are a lot of methods to send/receive messages, and we are going to explain in detail:
 
@@ -509,7 +509,7 @@ Here is a simple example
 
 Fixed transmission has more scenarios
 
-![EByte RF Fixed Transmission Example Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-Fixed-Transmission-example-schema.jpg)
+![EByte RF Fixed Transmission Example Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-Fixed-Transmission-example-schema.jpg)
 
 If you send it to a specific device (second scenario Fixed transmission), you must add ADDL, ADDH, and CHAN to identify It directly.
 
@@ -519,7 +519,7 @@ If you want to send a message to all devices in a specified Channel, you can use
 
 ResponseStatus rs = e70ttl.sendBroadcastFixedMessage(0x17, "Message to a devices of a channel");
 
-![EByte RF Network Broadcast Transmission Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-RF-Broadcast-Transmission-example-schema.jpg)
+![EByte RF Network Broadcast Transmission Diagram](https://mischianti.org/wp-content/uploads/2023/12/EByte-LoRa-Broadcast-Transmission-example-schema.jpg)
 
 EByte RF Network Broadcast Transmission Diagram
 
@@ -548,7 +548,7 @@ Continuous mode
 
 E70 offers the continuous mode by setting the same ADDH, ADDL, and CHAN. You can stream a lot of data or continuous data.
 
-![EByte RF continuous mode diagram](https://mischianti.org/wp-content/uploads/2024/01/EByte-RF-continuous-mode-diagram.jpg)
+![EByte RF continuous mode diagram](https://mischianti.org/wp-content/uploads/2024/01/EByte-LoRa-continuous-mode-diagram.jpg)
 
 EByte RF continuous mode diagram
 
