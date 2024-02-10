@@ -2,7 +2,7 @@
  * EBYTE RF E70 Series
  *
  * AUTHOR:  Renzo Mischianti
- * VERSION: 0.0.10
+ * VERSION: 0.0.11
  *
  * https://www.mischianti.org
  *
