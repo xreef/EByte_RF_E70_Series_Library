@@ -623,10 +623,14 @@ ResponseStructContainer RF_E70::getConfiguration(){
 
 	MODE_TYPE prevMode = this->mode;
 
+//	this->serialDef.stream->flush();
+
 	rc.status.code = this->setMode(MODE_PROGRAM);
 	if (rc.status.code!=E70_SUCCESS) return rc;
 
 	this->writeProgramCommand(READ_CONFIGURATION);
+
+//	this->serialDef.stream->read();
 
 	rc.data = malloc(sizeof(Configuration));
 	rc.status.code = this->receiveStruct((uint8_t *)rc.data, sizeof(Configuration));

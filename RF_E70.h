@@ -361,6 +361,11 @@ class RF_E70 {
 			template< typename T >
 			void begin( T &t, uint32_t baud, uint32_t config, int8_t txE70pin, int8_t rxE70pin ) {
 				DEBUG_PRINTLN("Begin ");
+				DEBUG_PRINT("TX: ");
+				DEBUG_PRINT(txE70pin);
+				DEBUG_PRINT("RX: ");
+				DEBUG_PRINT(rxE70pin);
+
 				t.setTimeout(500);
 				t.begin(baud, config, txE70pin, rxE70pin);
 				stream = &t;
